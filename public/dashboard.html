@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Dashboard</h2>
+    <div id="courses"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/courses')
+                .then(response => response.json())
+                .then(courses => {
+                    const coursesDiv = document.getElementById('courses');
+                    courses.forEach(course => {
+                        const courseElement = document.createElement('div');
+                        courseElement.innerHTML = `<h3>${course.name}</h3><a href="/video/${course.video}">Watch Video</a>`;
+                        coursesDiv.appendChild(courseElement);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
